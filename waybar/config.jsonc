@@ -1,0 +1,55 @@
+{
+    "layer": "top",
+    "position": "top",
+
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+        "pulseaudio",
+        "custom/microphone",
+        "custom/power"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "default": "●"
+        },
+        "persistent-workspaces": {
+            "*": 9
+        },
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+
+    "clock": {
+        "format": "{:%a, %d %B  %H:%M}",
+        "tooltip": false,
+	"on-click": "python ~/.config/hypr/scripts/calendar_popup.py"
+    },
+
+    "pulseaudio": {
+        "format": "󰕾 {volume}%",
+        "format-muted": "󰖁 {volume}%",
+        "on-click": "pavucontrol"
+    },
+
+    "custom/microphone": {
+        "exec": "wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print int($2 * 100) \"%\"}'",
+        "interval": 1,
+        "format": "󰍬 {}",
+        "on-click": "pavucontrol"
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "~/.config/hypr/scripts/power-menu.sh",
+	"tooltip": false
+    }
+}
